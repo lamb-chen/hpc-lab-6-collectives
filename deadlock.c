@@ -22,13 +22,16 @@ int main(int argc, char *argv[]) {
   for (int i = 0; i < msg_size; ++i)
     large_buffer[i] = (rank+1)%2;
 
+  MPI_Request request[2];
+  
   if (rank == 0) {
-    MPI_Send(large_buffer, msg_size, MPI_INT, 1, 99, MPI_COMM_WORLD);
-    MPI_Recv(recv_buffer, msg_size,MPI_INT, 1, 99, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+    MPI_Isend(large_buffer, msg_size, MPI_INT, 1, 99, MPI_COMM_WORLD, &request[0]);
+    MPI_Irecv(recv_buffer, msg_size, MPI_INT, 1, 99, MPI_COMM_WORLD, &request[1]);
   } else {
-    MPI_Send(large_buffer, msg_size, MPI_INT, 0, 99, MPI_COMM_WORLD);
-    MPI_Recv(recv_buffer, msg_size,MPI_INT, 0, 99, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+    MPI_Isend(large_buffer, msg_size, MPI_INT, 0, 99, MPI_COMM_WORLD, &request[0]);
+    MPI_Irecv(recv_buffer, msg_size, MPI_INT, 0, 99, MPI_COMM_WORLD, &request[1]);
   }
+  MPI_Waitall(2, request, MPI_STATUS_IGNORE);
 
   // Check solution
   int correct = 1;
@@ -49,3 +52,4 @@ int main(int argc, char *argv[]) {
 
   MPI_Finalize();
 }
+

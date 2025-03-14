@@ -167,13 +167,23 @@ int main(int argc, char* argv[])
 
   /* send to the left, receive from right */
   for(ii=0; ii < local_nrows; ii++)
-    sendbuf[ii] = w[ii * (local_ncols + 2) + 1];
+    sendbuf[ii] =  w[ii * (local_ncols + 2) + 1];
   MPI_Sendrecv(sendbuf, local_nrows, MPI_DOUBLE, left, tag,
 	       recvbuf, local_nrows, MPI_DOUBLE, right, tag,
 	       MPI_COMM_WORLD, &status);
   for(ii=0; ii < local_nrows; ii++)
-    w[ii * (local_ncols + 2) + local_ncols + 1] = recvbuf[ii];
-  
+    w[ii * (local_ncols + 2) + local_ncols + 1] = recvbuf[ii];  
+  MPI_Datatype new_type;
+  MPI_Type_vector(local_nrows, 1, local_ncols - 1, MPI_DOUBLE, &new_type);
+  MPI_Type_commit(&new_type);
+
+//   MPI_Sendrecv(&w[0][1], 1, column_type, right, tag,
+//     recvbuf, local_nrows, MPI_DOUBLE, left, tag,
+//     MPI_COMM_WORLD, &status);
+//   for (int ii = 0; ii < local_nrows; ii++) {
+//     w[ii][local_ncols + 1] = recvbuf[ii];
+// }
+
   /* send to the right, receive from left */
   for(ii=0; ii < local_nrows; ii++)
     sendbuf[ii] = w[ii * (local_ncols + 2) + local_ncols];

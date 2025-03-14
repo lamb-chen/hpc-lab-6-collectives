@@ -1,0 +1,22 @@
+srun: error: compute069: task 0: Exited with exit code 13
+srun: error: compute070: task 1: Exited with exit code 13
+slurmstepd: error: execve(): /user/home/im22279/lab6-collectives/./skeleton2-simple2d.c: Permission denied
+slurmstepd: error: execve(): /user/home/im22279/lab6-collectives/./skeleton2-simple2d.c: Permission denied
+NROWS: 4
+NCOLS: 16
+Initialised grid:
+-1.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 -1.0  -1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 -1.0  
+-1.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 -1.0  -1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 -1.0  
+-1.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 -1.0  -1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 -1.0  
+-1.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 -1.0  -1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 -1.0  
+
+Grid after halo-exchange.
+Notice that:
+ - the core cells are unchanged
+ - the halo cells now have values derived
+   from the core cells of neighbouring ranks
+1.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 1.0  0.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 0.0  
+1.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 1.0  0.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 0.0  
+1.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 1.0  0.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 0.0  
+1.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 1.0  0.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 0.0  
+

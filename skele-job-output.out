@@ -1,0 +1,4 @@
+slurmstepd: error: execve(): /user/home/im22279/lab6-collectives/./skeleton2-simple2d.c: Permission denied
+srun: error: compute069: task 1: Exited with exit code 13
+srun: error: compute068: task 0: Exited with exit code 13
+slurmstepd: error: execve(): /user/home/im22279/lab6-collectives/./skeleton2-simple2d.c: Permission denied
